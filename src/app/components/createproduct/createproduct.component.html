@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+        <img src="https://cdn.svgporn.com/logos/gusto.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        GTSales
+      </a>
+      <button type="button"  (click)="gotoHome()" class="btn btn-dark">Home</button>
+      <button type="button"  (click)="gotoEditarPerfil()" class="btn btn-dark">Perfil</button>
+      <button type="button" (click)="cerrarSesion()" class="btn btn-dark">Cerrar Sesion</button>
+      <button type="button" (click)="gotoCarrito()" class="btn btn-dark">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-cart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+          </svg>
+      </button>          
+  </nav>
+
+  <form>
+    <div class="form-row">
+      <div class="form-group text-center col align-self-center col-12 col-sm-12 col-md-12 col-lg-12">
+        <img (click)='uploader.click()' [src]="imgURL"  width="200" height="200" alt="imgUserProfile" class="img-thumbnail">
+        <input 
+        hidden 
+        type="file" 
+        #uploader
+        (change)="addImage($event)"
+      />
+      </div>
+    
+    </div>
+   <div class = "form-row">
+      <div class="form-group col align-self-end col-12 col-sm-12 col-md-4 col-lg-4 ">
+        <label for="inputNombre">Nombre</label>
+        <input type="text" [(ngModel)]="nombre" name="nombre" class="form-control" id="inputNombre" placeholder="Nombre">
+      </div>
+      <div class="form-group col align-self-end col-12 col-sm-12 col-md-4 col-lg-4 ">
+        <label for="inputApellido">Precio</label>
+        <input type="text" [(ngModel)]="precio" name="precio" class="form-control" id="precio" placeholder="Precio">
+      </div>
+      <div class="form-group col align-self-end col-12 col-sm-12 col-md-4 col-lg-4">
+
+        <mat-form-field id = "Categorias">
+          <mat-label>Seleccione una Categoria</mat-label>
+          <mat-select placeholder="Categoria" [(ngModel)]="selectedCategory" name="selectedCategory">
+            <mat-option disabled>None</mat-option>
+            <mat-option *ngFor="let category of categories" [value]="category.CATEGORIA_ID">{{ category.CATEGORIA_DESCRIPCION }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      
+  </div>
+  
+  <div class="form-group col align-self-center">
+    
+    <label for="exampleFormControlTextarea1">Detalle Producto</label>
+    <textarea class="form-control" name="message" [(ngModel)]="detalle" #message='ngModel' id="txtAreaDetalle" rows="3"></textarea>
+    </div>
+    </div>
+    <div class="form-group col align-self-end col-12 col-sm-12 col-md-12 col-lg-12">
+        <button  (click)="crearProducto()" type="submit" class="btn btn-primary">Crear</button>
+      
+      </div>
+  </form>
